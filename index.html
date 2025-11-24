@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政大泳隊 | 松竹梅邀請賽行前通知</title>
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ncp-blue': '#004d99', // 政大藍
+                        'ncp-light': '#e6f0ff',
+                        'ncp-dark': '#00264d',
+                        'highlight-bg': '#fde047', // Yellow-300 for strong highlight
+                        'highlight-border': '#b91c1c', // Red-700 for strong border
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Microsoft JhengHei', 'PingFang TC', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 自定義滾動條樣式，使其在行動裝置上更簡潔 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+        .table-cell-content {
+            /* 允許內容換行，提升在堆疊卡片中的可讀性 */
+            white-space: normal; 
+            word-break: break-word;
+        }
+        /* 新增置中樣式 */
+        .text-center-column {
+            text-align: center;
+        }
+        /* 高亮樣式 (更明顯的反白效果) */
+        .highlighted-row {
+            background-color: var(--highlight-color, #fde047) !important; /* Bright Yellow-300 */
+            border-left: 6px solid #b91c1c !important; /* Thick Red-700 Border */
+            font-weight: bold;
+            box-shadow: 0 0 0 1px #b91c1c; 
+        }
+        .schedule-row {
+            background-color: #ffffff !important; 
+        }
+        .schedule-row.bg-gray-50 {
+            background-color: #f9fafb !important;
+        }
+        
+        /* 針對小螢幕，調整任務分配表格的寬度，確保內容不會過於擠壓 */
+        @media (max-width: 640px) {
+            #task-table th, #task-table td {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            #task-table th:nth-child(2), #task-table td:nth-child(2) {
+                min-width: 200px; 
+            }
+        }
+
+        /* **** 核心響應式表格 (卡片式) 樣式 **** */
+        @media (max-width: 639px) { /* < sm breakpoint */
+            #schedule-table-am, #schedule-table-pm {
+                display: block;
+                width: 100%;
+            }
+            #schedule-table-am thead, #schedule-table-pm thead {
+                display: none; /* 隱藏原表頭 */
+            }
+            #schedule-table-am tbody, #schedule-table-pm tbody, 
+            #schedule-table-am tr, #schedule-table-pm tr, 
+            #schedule-table-am td, #schedule-table-pm td {
+                display: block;
+                width: 100%;
+            }
+            
+            #schedule-table-am tr, #schedule-table-pm tr {
+                margin-bottom: 12px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                transition: all 0.2s;
+            }
+            
+            #schedule-table-am td, #schedule-table-pm td {
+                padding: 8px 10px 8px 120px; /* 標籤留出空間 */
+                position: relative;
+                text-align: left !important;
+                border: none;
+                border-bottom: 1px solid #eee; 
+            }
+            
+            #schedule-table-am td:last-child, #schedule-table-pm td:last-child {
+                border-bottom: none;
+            }
+
+            #schedule-table-am td::before, #schedule-table-pm td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 110px; /* 標籤寬度 */
+                padding: 8px 10px;
+                font-weight: bold;
+                background-color: #f3f4f6; /* Tailwind gray-100 */
+                color: #004d99; /* ncp-blue */
+                display: flex;
+                align-items: center;
+                border-right: 1px solid #ddd;
+            }
+
+             /* 修正高亮卡片模式的樣式 */
+             .highlighted-row {
+                background-color: #fde047 !important;
+                border: 2px solid #b91c1c !important;
+                box-shadow: 0 4px 8px rgba(185, 28, 28, 0.2) !important;
+            }
+            .highlighted-row td::before {
+                background-color: #fbbf24 !important; /* 標籤顏色變深 (yellow-400) */
+            }
+        }
+        /* **** 結束核心響應式表格樣式 **** */
+    </style>
+</head>
+<body class="bg-gray-50 p-4 sm:p-8 font-sans">
+
+    <div class="container mx-auto max-w-4xl bg-white shadow-xl rounded-2xl p-6 sm:p-10 border-t-8 border-ncp-blue">
+
+        <!-- 標題 -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-ncp-dark tracking-tight leading-snug">
+                📢 第26屆松竹梅全國游泳邀請賽
+            </h1>
+            <p class="text-xl text-ncp-blue mt-2 font-semibold">政大泳隊行前通知</p>
+        </header>
+
+        <!-- 集合資訊 -->
+        <section class="mb-8 p-4 bg-ncp-light rounded-xl border border-ncp-blue/30">
+            <h2 class="text-2xl font-bold text-ncp-blue mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                🗓️ 集合資訊
+            </h2>
+            <div class="space-y-3 text-lg">
+                <p><span class="font-medium text-gray-700">日期:</span> <strong class="text-ncp-dark">11/29（六）</strong></p>
+                <p><span class="font-medium text-gray-700">時間:</span> <strong class="text-red-600 text-xl font-extrabold">早上 05:00</strong> (<span class="text-red-600 font-semibold">請務必準時，遊覽車不等人</span>)</p>
+                <p><span class="font-medium text-gray-700">地點:</span> <strong class="text-ncp-dark">好漢坡</strong></p>
+                <p><span class="font-medium text-gray-700">比賽地點:</span> 中華大學游泳池</p>
+                <p><span class="font-medium text-gray-700">遊覽車資訊:</span> 飛騰通運 / 聯絡人王女士 0925-168-869</p>
+            </div>
+        </section>
+
+        <!-- 必帶物品與服裝規定 -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-ncp-blue mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                🎒 必帶物品與服裝規定
+            </h2>
+            <div class="overflow-x-auto shadow-md rounded-xl">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="py-3 px-4 border-b text-ncp-dark">類別</th>
+                            <th class="py-3 px-4 border-b text-ncp-dark">項目清單</th>
+                            <th class="py-3 px-4 border-b text-ncp-dark">備註</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold text-gray-800 table-cell-content">證件類</td>
+                            <td class="py-3 px-4 table-cell-content">🪪 <strong>身分證</strong>、🪪 <strong>健保卡</strong>、🪪 <strong>學生證</strong></td>
+                            <td class="py-3 px-4 text-red-500 font-medium table-cell-content">檢錄查驗必備，缺一不可</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-3 px-4 font-semibold text-gray-800 table-cell-content">裝備類</td>
+                            <td class="py-3 px-4 table-cell-content">🏊 泳具、🧣 毛巾、💊 個人藥品、🩴 拖鞋</td>
+                            <td class="py-3 px-4 table-cell-content">建議多帶一套備用泳具</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold text-gray-800 table-cell-content">服裝規定</td>
+                            <td class="py-3 px-4 table-cell-content">👕 <strong>隊服</strong>、👖 <strong>隊服短褲</strong> 或 <strong>黑色長褲</strong></td>
+                            <td class="py-3 px-4 text-ncp-blue font-medium table-cell-content">請務必穿著隊服，長褲請穿黑色</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-3 px-4 font-semibold text-gray-800 table-cell-content">公用器材</td>
+                            <td class="py-3 px-4 table-cell-content">🚩 隊旗、🧘 瑜珈墊、🟦 地墊</td>
+                            <td class="py-3 px-4 text-gray-600 table-cell-content"><strong>11/28(五) 19:00</strong> 搬運到商學院或宿舍<br><strong>11/29(六)</strong> 由大一學弟搬運上車</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 安全與緊急聯絡 -->
+        <section class="mb-8 p-4 bg-red-50 rounded-xl border border-red-300">
+            <h2 class="text-2xl font-bold text-red-700 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.398 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                🚨 安全回報與緊急聯絡 (<span class="font-extrabold">重要！</span>)
+            </h2>
+            <p class="mb-3">請所有隊員務必完成以下兩件事：</p>
+            <ul class="list-disc list-inside space-y-2 mb-4 ml-4">
+                <li class="font-bold text-ncp-dark">
+                    <strong>通報家人與備援聯繫:</strong> 請務必將正、副隊長的聯絡資訊提供給家人，以便在緊急狀況或無法聯繫到隊員本人時，可以聯絡正、副隊長。
+                </li>
+                <li class="font-bold text-red-700"><strong>健康告知 (務必口頭說明)</strong>：若過去有曾因任何事情送過急診、氣喘、癲癇、嚴重腸胃炎、曾有開刀或住院經驗，請務必事先口頭告知正、副隊長。</li>
+            </ul>
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="bg-red-200">
+                            <th class="py-2 px-4 border-b">職稱</th>
+                            <th class="py-2 px-4 border-b">聯絡人</th>
+                            <th class="py-2 px-4 border-b">電話</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-2 px-4 font-semibold">隊長</td>
+                            <td class="py-2 px-4 font-semibold text-red-600">慶瑜</td>
+                            <td class="py-2 px-4 text-red-600">0912-832-338</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 font-semibold">副隊長</td>
+                            <td class="py-2 px-4 font-semibold text-red-600">小宜臻</td>
+                            <td class="py-2 px-4 text-red-600">0936-792-856</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 暖身菜單 -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-ncp-blue mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 0a8 8 0 01-8 8m8-8v8m-4-2H8"></path></svg>
+                🏊 賽前試水暖身菜單 (Warm-up)
+            </h2>
+            <div class="overflow-x-auto shadow-md rounded-xl">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr class="bg-green-100">
+                            <th class="py-3 px-4 border-b text-ncp-dark">項目</th>
+                            <th class="py-3 px-4 border-b text-ncp-dark">內容</th>
+                            <th class="py-3 px-4 border-b text-ncp-dark">重點提示</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold">熱身 (Warm Up)</td>
+                            <td class="py-3 px-4">200m 慢游 (Choice)</td>
+                            <td class="py-3 px-4">感受水感，放鬆肌肉</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">分解 (Drill)</td>
+                            <td class="py-3 px-4">4 x 50m 分解動作</td>
+                            <td class="py-3 px-4">調整姿勢，專注核心穩定</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold">衝刺 (Pace)</td>
+                            <td class="py-3 px-4">4 x 25m 比賽配速</td>
+                            <td class="py-3 px-4">測試出發與轉身，喚醒爆發力</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">緩和 (Cool Down)</td>
+                            <td class="py-3 px-4">100m 放鬆游</td>
+                            <td class="py-3 px-4">調整呼吸</td>
+                        </tr>
+                        <tr class="bg-green-200">
+                            <td class="py-3 px-4 font-bold">總距離</td>
+                            <td class="py-3 px-4 font-bold">約 500m - 600m</td>
+                            <td class="py-3 px-4 font-medium">依個人狀況自行增減</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 大一分工 -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-ncp-blue mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M5 12h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+                👥 大一新生任務分配
+            </h2>
+            <div class="overflow-x-auto shadow-md rounded-xl">
+                <!-- ID for task table to adjust mobile width if necessary -->
+                <table id="task-table" class="min-w-full bg-white">
+                    <thead>
+                        <tr class="bg-yellow-200">
+                            <!-- 任務職責寬度調整為 50% -->
+                            <th class="py-3 px-4 border-b" style="width: 20%;">組別</th>
+                            <th class="py-3 px-4 border-b" style="width: 50%;">任務職責</th>
+                            <th class="py-3 px-4 border-b" style="width: 30%;">關鍵指標 (KPI)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold">📋 檢錄組</td>
+                            <td class="py-3 px-4">掌握賽程，安排人員提醒與帶領選手至檢錄處。</td>
+                            <td class="py-3 px-4 font-bold text-green-600">全員準時檢錄，嚴禁漏檢錄。</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">📦 器材組</td>
+                            <td class="py-3 px-4">負責隊旗、🧘 瑜珈墊、🟦 地墊的上下車搬運與清點，組織搬便當，妥善組織丟垃圾、回收事宜，維持休息區清潔整潔。</td>
+                            <td class="py-3 px-4 font-bold text-green-600">器材無遺漏，休息區佈置完善。</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-semibold">📷 攝影組</td>
+                            <td class="py-3 px-4">紀錄比賽精彩瞬間（平面拍照、動態錄影）。</td>
+                            <td class="py-3 px-4 font-bold text-green-600">每位出賽隊員 (共31人) 必須有「獨照+合照」合計至少 5 張。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <!-- 賽程表 -->
+        <section id="schedule-section">
+            <h2 class="text-2xl font-bold text-ncp-blue mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                🏆 政大泳隊賽程表
+            </h2>
+            <!-- 賽程追蹤選擇器 -->
+            <div class="mb-4 flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+                <label for="member-selector" class="font-bold text-gray-700">選擇隊員追蹤賽程:</label>
+                <select id="member-selector" onchange="highlightMember(this.value)" class="p-2 border rounded-lg shadow-sm focus:ring-ncp-blue focus:border-ncp-blue w-full sm:w-auto">
+                    <option value="">-- 選擇一位隊員 --</option>
+                </select>
+            </div>
+            
+            <!-- 專屬賽程卡片 (新增區塊) -->
+            <div id="summary-card" class="mt-4 p-4 rounded-xl shadow-2xl border-2 border-ncp-blue bg-white transition-all duration-300 hidden">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+
+            <!-- 修正提示文字 -->
+            <p class="mb-4 text-sm text-gray-600 bg-yellow-100 p-2 rounded-lg">⚠️ 時間僅供參考，請依現場廣播為準。接力項目請隨時準備。</p>
+
+            <!-- 上午場 -->
+            <h3 class="text-xl font-semibold text-ncp-dark mt-6 mb-3 border-b pb-1">☀️ 上午場 (08:00 開始)</h3>
+            <div class="shadow-md rounded-xl">
+                <table id="schedule-table-am" class="min-w-full bg-white">
+                    <thead>
+                        <tr class="bg-ncp-light">
+                            <!-- 編號, 預計時間, 項目 置中 -->
+                            <th class="py-3 px-4 border-b text-center-column">編號</th>
+                            <th class="py-3 px-4 border-b text-center-column">預計時間</th>
+                            <th class="py-3 px-4 border-b text-center-column">項目</th>
+                            <th class="py-3 px-4 border-b">參賽隊員</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 加入 data-label 屬性並移除 overflow-x-auto 包裹 -->
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">1</td><td data-label="預計時間" class="table-cell-content text-center-column">08:00</td><td data-label="項目" class="table-cell-content text-center-column">女子 200公尺自由式</td><td data-label="參賽隊員" class="table-cell-content">柏巧</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">2</td><td data-label="預計時間" class="table-cell-content text-center-column">08:20</td><td data-label="項目" class="table-cell-content text-center-column">男子 200公尺自由式</td><td data-label="參賽隊員" class="table-cell-content">康驊、仲曛、梓宏、慶瑜*</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">4</td><td data-label="預計時間" class="table-cell-content text-center-column">08:55</td><td data-label="項目" class="table-cell-content text-center-column">男子 200公尺蝶式</td><td data-label="參賽隊員" class="table-cell-content">秉陞</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">5</td><td data-label="預計時間" class="table-cell-content text-center-column">09:10</td><td data-label="項目" class="table-cell-content text-center-column">女子 100公尺蛙式</td><td data-label="參賽隊員" class="table-cell-content">Emma、小宜臻</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">6</td><td data-label="預計時間" class="table-cell-content text-center-column">09:25</td><td data-label="項目" class="table-cell-content text-center-column">男子 100公尺蛙式</td><td data-label="參賽隊員" class="table-cell-content">品謙、則睿、柏淵</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">7</td><td data-label="預計時間" class="table-cell-content text-center-column">09:40</td><td data-label="項目" class="table-cell-content text-center-column">女子 100公尺仰式</td><td data-label="參賽隊員" class="table-cell-content">嘉穎、宥妏</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">10</td><td data-label="預計時間" class="table-cell-content text-center-column">10:20</td><td data-label="項目" class="table-cell-content text-center-column">女子 50公尺蝶式</td><td data-label="參賽隊員" class="table-cell-content">嘉穎、又綺、禹榛、乃予</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">11</td><td data-label="預計時間" class="table-cell-content text-center-column">10:30</td><td data-label="項目" class="table-cell-content text-center-column">男子 50公尺蝶式</td><td data-label="參賽隊員" class="table-cell-content">澤享、則文、至瀚、大益、晟剛、宸瑋*</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">12</td><td data-label="預計時間" class="table-cell-content text-center-column">10:50</td><td data-label="項目" class="table-cell-content text-center-column">女子 200公尺混合式</td><td data-label="參賽隊員" class="table-cell-content">Emma、毛毛</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">14</td><td data-label="預計時間" class="table-cell-content text-center-column">11:20</td><td data-label="項目" class="table-cell-content text-center-column">女子 100公尺自由式</td><td data-label="參賽隊員" class="table-cell-content">柏巧、亮柔*</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">15</td><td data-label="預計時間" class="table-cell-content text-center-column">11:30</td><td data-label="項目" class="table-cell-content text-center-column">男子 100公尺自由式</td><td data-label="參賽隊員" class="table-cell-content">為政、秉陞</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">16</td><td data-label="預計時間" class="table-cell-content text-center-column">11:50</td><td data-label="項目" class="table-cell-content text-center-column">女子 400公尺混合式接力</td><td data-label="參賽隊員" class="table-cell-content">(現場確認棒次)</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">17</td><td data-label="預計時間" class="table-cell-content text-center-column">12:10</td><td data-label="項目" class="table-cell-content text-center-column">男子 400公尺混合式接力</td><td data-label="參賽隊員" class="table-cell-content">(現場確認棒次)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 下午場 -->
+            <h3 class="text-xl font-semibold text-ncp-dark mt-6 mb-3 border-b pb-1">🌙 下午場 (13:30 開始)</h3>
+            <div class="shadow-md rounded-xl">
+                <table id="schedule-table-pm" class="min-w-full bg-white">
+                    <thead>
+                        <tr class="bg-ncp-light">
+                             <!-- 編號, 預計時間, 項目 置中 -->
+                            <th class="py-3 px-4 border-b text-center-column">編號</th>
+                            <th class="py-3 px-4 border-b text-center-column">預計時間</th>
+                            <th class="py-3 px-4 border-b text-center-column">項目</th>
+                            <th class="py-3 px-4 border-b">參賽隊員</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 加入 data-label 屬性並移除 overflow-x-auto 包裹 -->
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">19</td><td data-label="預計時間" class="table-cell-content text-center-column">14:00</td><td data-label="項目" class="table-cell-content text-center-column">男子 400公尺自由式</td><td data-label="參賽隊員" class="table-cell-content">仲曛、梓宏</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">23</td><td data-label="預計時間" class="table-cell-content text-center-column">15:15</td><td data-label="項目" class="table-cell-content text-center-column">男子 200公尺蛙式</td><td data-label="參賽隊員" class="table-cell-content">品謙、柏淵</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">24</td><td data-label="預計時間" class="table-cell-content text-center-column">15:30</td><td data-label="項目" class="table-cell-content text-center-column">男女 400公尺混合式接力</td><td data-label="參賽隊員" class="table-cell-content">(現場確認棒次)</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">25</td><td data-label="預計時間" class="table-cell-content text-center-column">15:45</td><td data-label="項目" class="table-cell-content text-center-column">女子 50公尺仰式</td><td data-label="參賽隊員" class="table-cell-content">又綺、宥妏、敏蓁、嘉妤</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">26</td><td data-label="預計時間" class="table-cell-content text-center-column">16:00</td><td data-label="項目" class="table-cell-content text-center-column">男子 50公尺仰式</td><td data-label="參賽隊員" class="table-cell-content">澤享、至瀚、浩元、岱融</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">27</td><td data-label="預計時間" class="table-cell-content text-center-column">16:15</td><td data-label="項目" class="table-cell-content text-center-column">女子 50公尺自由式</td><td data-label="參賽隊員" class="table-cell-content">禹榛、毛毛、敏蓁、亮柔*</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">28</td><td data-label="預計時間" class="table-cell-content text-center-column">16:30</td><td data-label="項目" class="table-cell-content text-center-column">男子 50公尺自由式</td><td data-label="參賽隊員" class="table-cell-content">則文、大益、Felix、康驊、為政、晟剛、宸瑋*</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">29</td><td data-label="預計時間" class="table-cell-content text-center-column">16:45</td><td data-label="項目" class="table-cell-content text-center-column">女子 50公尺蛙式</td><td data-label="參賽隊員" class="table-cell-content">小宜臻</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">30</td><td data-label="預計時間" class="table-cell-content text-center-column">17:00</td><td data-label="項目" class="table-cell-content text-center-column">男子 50公尺蛙式</td><td data-label="參賽隊員" class="table-cell-content">則睿、Felix、浩元、岱融</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">33</td><td data-label="預計時間" class="table-cell-content text-center-column">18:00</td><td data-label="項目" class="table-cell-content text-center-column">女子 400公尺自由式接力</td><td data-label="參賽隊員" class="table-cell-content">(現場確認棒次)</td></tr>
+                        <tr class="schedule-row"><td data-label="編號" class="table-cell-content text-center-column">34</td><td data-label="預計時間" class="table-cell-content text-center-column">18:20</td><td data-label="項目" class="table-cell-content text-center-column">男子 400公尺自由式接力</td><td data-label="參賽隊員" class="table-cell-content">(現場確認棒次)</td></tr>
+                        <tr class="schedule-row bg-gray-50"><td data-label="編號" class="table-cell-content text-center-column">35</td><td data-label="預計時間" class="table-cell-content text-center-column">18:40</td><td data-label="項目" class="table-cell-content text-center-column">大隊接力</td><td data-label="參賽隊員" class="table-cell-content">全體隊員</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 結語 -->
+        <footer class="mt-10 pt-4 border-t border-gray-300 text-center">
+            <p class="text-xl font-bold text-ncp-blue">
+                松竹梅是我們展現團結與實力的時刻，大家週六見，加油！💪
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        const memberList = [
+            "柏巧", "康驊", "仲曛", "梓宏", "慶瑜*", "秉陞", "Emma", "小宜臻", "品謙", "則睿", 
+            "柏淵", "嘉穎", "宥妏", "又綺", "禹榛", "乃予", "澤享", "則文", "至瀚", "大益", 
+            "晟剛", "宸瑋*", "毛毛", "亮柔*", "為政", "Felix", "岱融"
+        ];
+        const ROW_CLASS = 'schedule-row';
+        const HIGHLIGHT_CLASS = 'highlighted-row';
+        const ALT_BG_CLASS = 'bg-gray-50';
+
+        function populateMemberSelector() {
+            const selector = document.getElementById('member-selector');
+            memberList.sort().forEach(member => {
+                const option = document.createElement('option');
+                option.value = member;
+                option.textContent = member;
+                selector.appendChild(option);
+            });
+        }
+
+        function highlightMember(selectedName) {
+            const rows = document.querySelectorAll(`.${ROW_CLASS}`);
+            const scheduleSection = document.getElementById('schedule-section');
+            const summaryCard = document.getElementById('summary-card');
+            
+            let eventsFound = [];
+            
+            // 1. 清除所有高亮、恢復交替背景，並隱藏卡片
+            rows.forEach((row, index) => {
+                row.classList.remove(HIGHLIGHT_CLASS);
+                row.classList.remove(ALT_BG_CLASS); 
+                
+                // 恢復交替背景色
+                if (index % 2 !== 0) {
+                    row.classList.add(ALT_BG_CLASS);
+                }
+            });
+            summaryCard.classList.add('hidden');
+
+
+            if (!selectedName) {
+                return; // 未選擇隊員則退出
+            }
+
+            // 2. 應用新高亮並收集資料
+            const escapedName = selectedName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            // Regex checks for the name surrounded by separators (、) or boundaries (^, $)
+            const regex = new RegExp(`(^|、)${escapedName}(\\s*($|、))`);
+
+            rows.forEach((row) => {
+                const memberCell = row.querySelector('[data-label="參賽隊員"]');
+                
+                if (memberCell && regex.test(memberCell.textContent.trim())) {
+                    // 移除交替背景並套用高亮
+                    row.classList.remove(ALT_BG_CLASS);
+                    row.classList.add(HIGHLIGHT_CLASS);
+                    
+                    // Data collection for summary
+                    const rowData = {};
+                    row.querySelectorAll('td').forEach(cell => {
+                        rowData[cell.getAttribute('data-label')] = cell.textContent.trim();
+                    });
+                    
+                    // Determine session check-in time
+                    const tableId = row.closest('table').id;
+                    let checkInTime = '';
+                    if (tableId === 'schedule-table-am') {
+                        checkInTime = '07:45 (上午場總檢錄)';
+                    } else if (tableId === 'schedule-table-pm') {
+                        checkInTime = '13:20 (下午場總檢錄)';
+                    } else {
+                         checkInTime = '請依現場廣播確認';
+                    }
+                    
+                    eventsFound.push({
+                        id: rowData['編號'],
+                        time: rowData['預計時間'],
+                        event: rowData['項目'],
+                        checkIn: checkInTime
+                    });
+                }
+            });
+
+            // 3. 填充並顯示卡片
+            if (eventsFound.length > 0) {
+                let summaryHtml = '<h3 class="text-xl font-bold text-ncp-dark mb-3">🏅 ' + selectedName + ' 的參賽項目</h3>';
+                summaryHtml += '<div class="space-y-3">';
+                eventsFound.forEach((event, index) => {
+                    summaryHtml += `
+                        <div class="p-3 border-l-4 ${index % 2 === 0 ? 'bg-blue-50 border-ncp-blue' : 'bg-gray-100 border-gray-400'} rounded-md shadow-inner">
+                            <!-- 修正點：只保留項目編號 -->
+                            <p class="text-sm text-gray-600 mb-1">項目編號 ${event.id}</p>
+                            <p class="text-lg font-extrabold text-ncp-dark">${event.event}</p>
+                            <div class="mt-2 text-sm space-y-0.5">
+                                <p>🕒 預計開始時間: <strong class="text-red-600">${event.time}</strong></p>
+                                <!-- 移除建議檢錄時間 -->
+                            </div>
+                        </div>
+                    `;
+                });
+                summaryHtml += '</div>';
+                
+                summaryCard.innerHTML = summaryHtml;
+                summaryCard.classList.remove('hidden');
+                
+                // 4. 自動捲動到賽程表區塊 (包含卡片)
+                if (scheduleSection) {
+                    scheduleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', populateMemberSelector);
+    </script>
+
+</body>
+</html>
