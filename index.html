@@ -566,24 +566,27 @@
          * Finds the first competition start time for a given event ID.
          */
         function getEventStartTime(eventId) {
-            const tableAm = document.getElementById('schedule-table-am');
-            const tablePm = document.getElementById('schedule-table-pm');
-
-            const findTime = (table) => {
+            const tables = [
+                document.getElementById('schedule-table-am'),
+                document.getElementById('schedule-table-pm')
+            ];
+        
+            for (const table of tables) {
                 const rows = table.querySelectorAll('tbody tr');
                 for (const row of rows) {
                     const idCell = row.querySelector('[data-label="編號"]');
                     const timeCell = row.querySelector('[data-label="預計時間"]');
-                    if (idCell && timeCell && idCell.textContent.trim() === eventId) {
-                        const timeRange = timeCell.textContent.trim();
-                        // Time range format is 'HH:MM - HH:MM'
-                        return timeRange.split(' - ')[0].trim();
+                    if (!idCell || !timeCell) continue;
+        
+                    if (idCell.textContent.trim() === eventId) {
+                        let timeStr = timeCell.textContent.trim();
+                        timeStr = timeStr.replace('~', '-').replace('—', '-').replace(' ', '');
+                        const parts = timeStr.split('-');
+                        return parts[0]?.trim() || null;
                     }
                 }
-                return null;
-            };
-
-            return findTime(tableAm) || findTime(tablePm);
+            }
+            return null;
         }
 
         /**
@@ -734,6 +737,7 @@
 
 </body>
 </html>
+
 
 
 
